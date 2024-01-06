@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Explorer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1, p {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #course-info {
+            display: none;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Course Explorer</h1>
+    <p>Select a course to explore:</p>
+
+    <form id="courseForm">
+        <label for="courses">Select a course:</label>
+        <select id="courses" name="courses">
+            <option value="CSS">CSS</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+        </select>
+
+        <button type="button" onclick="exploreCourse()">Explore Course</button>
+    </form>
+
+    <div id="course-info">
+        <h2>Course Information</h2>
+        <p id="description"></p>
+        <p id="instructor"></p>
+        <p id="duration"></p>
+        <a id="link" href="#" target="_blank">Learn More</a>
+    </div>
+
+    <script>
+        function exploreCourse() {
+            const selectedCourse = document.getElementById('courses').value;
+            const courseInfo = {
+                'CSS': {
+                    'description': 'Cascading Style Sheets (CSS) is a style sheet language used for describing the look and formatting of a document written in a markup language.',
+                    'instructor': 'John Doe',
+                    'duration': '4 weeks',
+                    'link': 'https://example.com/css-course'
+                },
+                'Java': {
+                    'description': 'Java is a high-level, class-based, object-oriented programming language designed to have as few implementation dependencies as possible.',
+                    'instructor': 'Jane Smith',
+                    'duration': '6 weeks',
+                    'link': 'https://example.com/java-course'
+                },
+                'Python': {
+                    'description': 'Python is a high-level, interpreted programming language known for its simplicity and readability. It is widely used for web development, data analysis, and artificial intelligence.',
+                    'instructor': 'Bob Johnson',
+                    'duration': '8 weeks',
+                    'link': 'https://example.com/python-course'
+                }
+            };
+
+            const courseData = courseInfo[selectedCourse];
+            if (courseData) {
+                document.getElementById('description').textContent = `Description: ${courseData.description}`;
+                document.getElementById('instructor').textContent = `Instructor: ${courseData.instructor}`;
+                document.getElementById('duration').textContent = `Duration: ${courseData.duration}`;
+                const linkElement = document.getElementById('link');
+                linkElement.textContent = 'Learn More';
+                linkElement.href = courseData.link;
+
+                document.getElementById('course-info').style.display = 'block';
+            } else {
+                alert(`Sorry, ${selectedCourse} is not available in our course list.`);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p, ul {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Study Notes</h1>
+    <p>This is an example of study notes in HTML. You can customize and add your own content.</p>
+    
+    <ul>
+        <li><strong>Topic 1:</strong> HTML</li>
+            <ul>
+                <li>HTML stands for HyperText Markup Language.</li>
+                <li>It is used to structure content on the web.</li>
+                <li>HTML elements are represented by tags.</li>
+            </ul>
+        <li><strong>Topic 2:</strong> CSS</li>
+            <ul>
+                <li>CSS stands for Cascading Style Sheets.</li>
+                <li>It is used for styling HTML elements.</li>
+                <li>Selectors are used to target specific HTML elements for styling.</li>
+            </ul>
+        <li><strong>Topic 3:</strong> JavaScript</li>
+            <ul>
+                <li>JavaScript is a scripting language used for web development.</li>
+                <li>It adds interactivity to web pages.</li>
+                <li>Commonly used for client-side scripting.</li>
+            </ul>
+    </ul>
+
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script>
+        function downloadPDF() {
+            const element = document.body;
+
+            html2pdf(element, {
+                margin: 10,
+                filename: 'study_notes.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            });
+        }
+    </script>
+
+    <button onclick="downloadPDF()">Download as PDF</button>
+</body>
+</html>

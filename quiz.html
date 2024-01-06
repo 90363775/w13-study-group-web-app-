@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1, p {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            display: none;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <p>Answer the following questions:</p>
+
+    <form id="quizForm">
+        <label for="q1">1. What does HTML stand for?</label>
+        <input type="text" id="q1" name="q1">
+
+        <label for="q2">2. Which tag is used to create a hyperlink?</label>
+        <div>
+            <input type="radio" id="q2a" name="q2" value="a">
+            <label for="q2a">br</label>
+            <input type="radio" id="q2b" name="q2" value="b">
+            <label for="q2b">href</label>
+            <input type="radio" id="q2c" name="q2" value="c">
+            <label for="q2c">h1</label>
+        </div>
+
+        <label for="q3">3. What is the purpose of CSS?</label>
+        <textarea id="q3" name="q3"></textarea>
+
+        <!-- Add more questions as needed -->
+
+        <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+
+    <div id="result">
+        <h2>Quiz Result</h2>
+        <p id="score"></p>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            const answers = {
+                q1: document.getElementById('q1').value,
+                q2: document.querySelector('input[name="q2"]:checked') ? document.querySelector('input[name="q2"]:checked').value : null,
+                q3: document.getElementById('q3').value
+            };
+
+            let score = 0;
+            if (answers.q1.trim().toLowerCase() === 'hypertext markup language') {
+                score++;
+            }
+            if (answers.q2 === 'a') {
+                score++;
+            }
+
+            const resultElement = document.getElementById('result');
+            const scoreElement = document.getElementById('score');
+            scoreElement.textContent = `Your score: ${score} out of 2`;
+            resultElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
